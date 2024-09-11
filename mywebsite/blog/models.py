@@ -2,6 +2,8 @@ from django.db import models
 from category.models import Categories
 from django_ckeditor_5.fields import CKEditor5Field
 from django.core.exceptions import ValidationError
+import datetime
+
 # Create your models here.
 # Modelo de Posts
 class BasePostsContent(models.Model):
@@ -9,6 +11,7 @@ class BasePostsContent(models.Model):
     slug = models.CharField(max_length=250)
     img = models.ImageField(upload_to='posts/images/', verbose_name="Image")
     description = models.TextField()
+    date = models.DateField(default=datetime.date.today)
 
     class Meta:
         abstract = True

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="text-center">
+        <h1>{{ post.title }}</h1>
+        <p class="my-2 h5 text-muted"><strong>Publicado el:</strong> {{ post.date|date:"d M Y" }}</p>
+        <p><strong>Categorías:</strong>
+            {% for category in post.categories.all %}
+                <span class="badge bg-primary">{{ category.name }}</span>{% if not forloop.last %}  {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+
+    {% if post.img %}
+        <img src="{{ post.img.url }}" alt="{{ post.title }}" class="img-fluid">
+    {% endif %}
+
+    <div class="my-4 text-center">
+        <p style="text-align: justify;">{{ post.description|safe }}</p>
+        <div style="text-align: justify;">
+            {{ post.content|safe }}
+        </div>
+        <a class="btn btn-primary" href="{% url 'blog:post' %}">Volver a la lista de posts</a>
+    </div>
+    
+
+{% endblock %}

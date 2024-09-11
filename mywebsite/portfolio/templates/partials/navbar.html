@@ -1,0 +1,30 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/"><code>David Fregoso Leon</code></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Programacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% url 'blog:post' as post_url %}{% if request.path == post_url %}active{% endif %}" href="{{ post_url }}">Escritos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/arte/' %}active{% endif %}" href="/arte/">Arte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/recomendaciones/' %}active{% endif %}" href="/recomendaciones/">Recomendaciones</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a class="btn btn-primary btn-sm" href="{% static 'portfolio/Resume.pdf' %}" target="_blank">Descargar CV</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>

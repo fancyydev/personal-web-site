@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <h1>Posts</h1>
+    {% for post in posts %}
+    <div class="p-3">
+        <div class="card card-body bg-dark card-project">
+            <div class="row">
+                <div class="col-3 my-auto">
+                    {% if post.img %}
+                        <img src="{{ post.img.url }}" alt="{{ post.title }}" style="max-width: 100%;" class="img-fluid">
+                    {% endif %}
+                </div>
+    
+                <div class="col-9 my-auto">
+                    <h2>{{ post.title }}</h2>
+                    <p style="text-align: justify;">{{ post.description|striptags|truncatechars:500 }}</p>
+                    <p><strong>Publicado el:</strong> {{ post.date|date:"M d Y"|upper }}</p>
+                    <p><strong>Categorías:</strong>
+                        {% for category in post.categories.all %}
+                            {{ category.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No hay posts disponibles.</p>
+    {% endfor %}
+
+{% endblock %}
