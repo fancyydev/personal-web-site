@@ -3,14 +3,16 @@ from .models import *
 # Create your views here.
 
 def render_posts(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(type='escritos')
     return render(request, 'posts.html', {'posts': posts})
 
 def list_written_posts(request):
-    return
+    posts = Post.objects.filter(type='escritos')
+    return render(request, 'posts.html', {'posts': posts})
 
 def list_recomendation_posts(request):
-    return
+    posts = Post.objects.filter(type='recomendaciones')
+    return render(request, 'posts.html', {'posts': posts})
 
 def list_art_posts(request):
     return

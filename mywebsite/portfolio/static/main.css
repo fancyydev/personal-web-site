@@ -18,3 +18,19 @@ body {
 .justify {
     text-align: justify;
 }
+.ck-content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%; /* Para asegurar que la imagen sea responsiva */
+    height: auto;
+}
+
+.ck-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.ck-content p span{
+    color: white !important;
+}
