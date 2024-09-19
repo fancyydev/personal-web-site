@@ -1,26 +1,36 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="text-center">
+<div class="container">
+    <div class="text-center mb-5">
         <h1>{{ post.title }}</h1>
-        <p class="my-2 h5 text-muted"><strong>Publicado el:</strong> {{ post.date|date:"d M Y" }}</p>
-        <p><strong>Categorías:</strong>
+        <p class="my-2 h5 text-muted">
+            <strong>Publicado el:</strong> {{ post.date|date:"d M Y" }}
+        </p>
+        <p>
+            <strong>Categorías:</strong>
             {% for category in post.categories.all %}
-                <span class="badge bg-primary">{{ category.name }}</span>{% if not forloop.last %}  {% endif %}
+                <span class="badge bg-primary">{{ category.name }}</span>
             {% endfor %}
         </p>
     </div>
 
-    {% if post.img %}
-        <img src="{{ post.img.url }}" alt="{{ post.title }}" class="img-fluid">
-    {% endif %}
+    <div class="text-center">
+        {% if post.img %}
+            <img src="{{ post.img.url }}" alt="{{ post.title }}" class="img-fluid img-thumbnail" style="max-width: auto; height: 400px;">
+        {% endif %}
+    </div>
 
-    <div class="my-4 text-center">
-        <p style="text-align: justify;">{{ post.description|safe }}</p>
-        <div style="text-align: justify;">
+    <div class="my-4">
+        <p style="text-align: center;">{{ post.description|safe }}</p>
+        <div class="ck-content" style="text-align: center;">
             {{ post.content|safe }}
         </div>
-        <a class="btn btn-primary" href="{% url 'blog:post' %}">Volver a la lista de posts</a>
     </div>
     
+    <div class="text-center">
+        <a class="btn btn-primary" href="{% url redirect_url %}">Volver a la lista de posts</a>
+    </div>
+    
+</div>
 
 {% endblock %}

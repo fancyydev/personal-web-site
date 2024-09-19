@@ -13,13 +13,13 @@
             <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Programacion</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% url 'blog:post' as post_url %}{% if request.path == post_url %}active{% endif %}" href="{{ post_url }}">Escritos</a>
+            <a class="nav-link {% url 'blog:writen_posts' as url %}{% if request.path == url %}active{% endif %}" href="{{ url }}">Escritos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% url 'blog:recomendation_posts' as url %}{% if request.path == url %}active{% endif %}" href="{{ url }}">Recomendaciones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.path == '/arte/' %}active{% endif %}" href="/arte/">Arte</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {% if request.path == '/recomendaciones/' %}active{% endif %}" href="/recomendaciones/">Recomendaciones</a>
           </li>
           <li class="nav-item d-flex align-items-center">
             <a class="btn btn-primary btn-sm" href="{% static 'portfolio/Resume.pdf' %}" target="_blank">Descargar CV</a>
