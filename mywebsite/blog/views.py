@@ -19,7 +19,16 @@ def list_art_posts(request):
 
 def detail_post(request, post_slug):
     post = get_object_or_404(Post, slug = post_slug)
-    return render(request, 'post_detail.html', {'post': post})
+    
+    if post.type== 'escritos':
+        redirect_url = 'blog:writen_posts'
+    elif post.type== 'recomendaciones':
+        redirect_url = 'blog:recomendation_posts'
+  
+    return render(request, 'post_detail.html', {
+        'post': post,
+        'redirect_url': redirect_url  # Pasamos la URL a la plantilla
+    })
 
 def detail_art_post(request, post_id):
     return
