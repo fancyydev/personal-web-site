@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+
+
 {% block content %}
 
     <h1>Posts</h1>
@@ -26,8 +28,12 @@
             </div>
         </div>
     </div>
+
     {% empty %}
         <p>No hay posts disponibles.</p>
     {% endfor %}
-
+    <div class="p-3">
+        {% include "pagination.html" with page=posts %}
+    </div>
+    
 {% endblock %}

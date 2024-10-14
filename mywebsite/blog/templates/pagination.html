@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="First" style="background-color: #333; color: white; border-color: #555;">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous" style="background-color: #333; color: white; border-color: #555;">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="First" style="background-color: #555; color: #ddd; border-color: #555;">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous" style="background-color: #555; color: #ddd; border-color: #555;">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for num in page.paginator.page_range %}
+                {% if page.number == num %}
+                    <li class="page-item active">
+                        <a class="page-link" href="#" style="background-color: black; color: white; border-color: black;">{{ num }}</a>
+                    </li>
+                {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}" style="background-color: #333; color: white; border-color: #555;">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next" style="background-color: #333; color: white; border-color: #555;">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page.paginator.num_pages }}" aria-label="Last" style="background-color: #333; color: white; border-color: #555;">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next" style="background-color: #555; color: #ddd; border-color: #555;">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Last" style="background-color: #555; color: #ddd; border-color: #555;">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
