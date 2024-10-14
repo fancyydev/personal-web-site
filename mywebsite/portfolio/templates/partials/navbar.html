@@ -18,8 +18,9 @@
           <li class="nav-item">
             <a class="nav-link {% url 'blog:recomendation_posts' as url %}{% if request.path == url %}active{% endif %}" href="{{ url }}">Recomendaciones</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if request.path == '/arte/' %}active{% endif %}" href="/arte/">Arte</a>
+          <!-- Cambiado mr-3 a me-3 para margen final en versiones modernas de Bootstrap -->
+          <li class="nav-item me-3">
+            <a class="nav-link {% url 'blog:art_posts' as url %}{% if request.path == url %}active{% endif %}" href="{{ url }}">Arte</a>
           </li>
           <li class="nav-item d-flex align-items-center">
             <a class="btn btn-primary btn-sm" href="{% static 'portfolio/Resume.pdf' %}" target="_blank">Descargar CV</a>

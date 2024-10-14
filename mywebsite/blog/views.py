@@ -37,7 +37,21 @@ def list_recomendation_posts(request):
     return render(request, 'posts.html', {'posts': posts})
 
 def list_art_posts(request):
-    return
+    art = True
+    
+    post_list = Art.objects.all()
+    paginator = Paginator(post_list, 6)
+    page_number = request.GET.get('page', 1)
+    
+    try:
+        posts = paginator.page(page_number)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+        
+    return render(request, 'posts.html', {'posts': posts, 'art':art})
+    
 
 def detail_post(request, post_slug):
     post = get_object_or_404(Post, slug = post_slug)
