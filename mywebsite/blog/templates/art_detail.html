@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load custom_filters %}
+{% block content %}
+<div class="container">
+    <div class="text-center mb-3">
+        <h1>{{ post.title }}</h1>
+        <p class="my-2 h5 text-muted">
+            <strong>Publicado el:</strong> {{ post.date|date:"d M Y" }}
+        </p>
+        <p>
+            <!-- Creamos nuestro propio template filter  -->
+            <strong>Herramientas:</strong>
+            {% for tool in post.tools|split_by_comma %}
+                <span class="badge bg-primary">{{ tool }}</span>
+            {% endfor %}
+            
+        </p>
+    </div>
+
+    <div class="text-center mb-3">
+        {% if post.img %}
+            <img src="{{ post.img.url }}" alt="{{ post.title }}" class="img-fluid img-thumbnail" style="max-width: auto; height: 400px;">
+        {% endif %}
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary" href="{% url redirect_url %}">Volver a la lista de posts</a>
+    </div>
+</div>
+{% endblock %}
